@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caneta 3D Sustentável - Transforme Lixo em Tecnologia</title>
+    <style>
+        /* Estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Usando Inter como solicitado */
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilos do cabeçalho */
+        header {
+            background: rgba(60, 50, 90, 0.7); /* Fundo mais opaco para legibilidade */
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 15px 15px; /* Cantos arredondados na parte inferior */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Estilos do conteúdo principal */
+        main {
+            margin-top: 80px; /* Espaço para o cabeçalho fixo */
+            flex-grow: 1; /* Permite que o conteúdo principal ocupe o espaço restante */
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap; /* Para responsividade */
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem auto; /* Centraliza a seção */
+            padding: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 1160px; /* Garante que a seção não seja muito larga */
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .section h3.carousel-title { /* Estilo específico para o título do carrossel */
+            text-align: center;
+            font-size: 1.8rem; /* Tamanho um pouco menor que h2 */
+            margin-top: 2.5rem; /* Espaço acima */
+            margin-bottom: 1.5rem; /* Espaço abaixo */
+            color: #4a5568; /* Cor mais suave */
+        }
+
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .component-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .component-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .component-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .component-price {
+            background: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .safety-warning {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid #d32f2f;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .safety-warning h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .safety-warning ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .safety-warning li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .safety-warning li::before {
+            content: '•'; /* Marcador de lista personalizado */
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            background: white;
+            margin: 1rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            color: white;
+            width: 2.5rem; /* Aumentado para melhor visibilidade */
+            height: 2.5rem; /* Aumentado para melhor visibilidade */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .step h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Estilos do container Three.js */
+        #threejs-container {
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #threejs-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.6rem 1rem; /* Reduzido padding do container de controles */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex; 
+            gap: 8px; /* Reduzido gap entre botões */
+            flex-wrap: wrap; 
+            justify-content: center;
+        }
+
+        .controls button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem; /* Reduzido padding dos botões */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+            font-size: 0.9rem; /* Reduzido tamanho da fonte */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        /* Estilos dos benefícios */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea; /* Cor para os ícones */
+        }
+
+        .benefit h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Estilos do rodapé */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-radius: 15px 15px 0 0; /* Cantos arredondados na parte superior */
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        /* Estilos para a seção de considerações finais */
+        .final-considerations {
+            background: #f0f8ff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .final-considerations h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .final-considerations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .final-considerations li {
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Estilos do Carrossel */
+        .carousel-container {
+            position: relative;
+            max-width: 800px; /* Largura máxima do carrossel */
+            margin: 2rem auto; /* Centraliza o carrossel */
+            overflow: hidden;
+            border-radius: 15px;
+            background: #f9f9f9; /* Fundo suave para o carrossel */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Animação de transição */
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 2rem;
+            text-align: center;
+            background-color: #fff; /* Fundo branco para cada slide */
+            border-radius: 10px; /* Cantos arredondados para os slides */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra sutil para os slides */
+            margin-right: 0; /* Remove margem extra se houver */
+        }
+
+        .carousel-slide h4 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .carousel-slide .slide-icon {
+            font-size: 3rem; /* Tamanho do ícone */
+            margin-bottom: 1rem;
+            color: #764ba2; /* Cor do ícone */
+        }
+
+        .carousel-slide p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(102, 126, 234, 0.8); /* Azul com transparência */
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            border-radius: 50%; /* Botões redondos */
+            font-size: 1.5rem;
+            z-index: 100;
+            transition: background-color 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-button:hover {
+            background-color: #764ba2; /* Roxo ao passar o mouse */
+        }
+
+        .carousel-button-prev {
+            left: 20px;
+        }
+
+        .carousel-button-next {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .indicator-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator-dot.active {
+            background-color: #667eea;
+        }
+
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none; /* Oculta links de navegação em telas menores, pode ser substituído por um menu hambúrguer */
+            }
+
+            .controls {
+                flex-direction: column; /* Botões de controle empilhados em telas menores */
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 5px; /* Espaçamento menor entre botões empilhados */
+            }
+             .controls button {
+                width: 100%; /* Botões ocupam largura total no mobile */
+                padding: 0.5rem; /* Ajuste de padding para mobile */
+                font-size: 0.85rem; /* Fonte um pouco menor no mobile */
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+             .section h3.carousel-title {
+                font-size: 1.5rem;
+            }
+
+            .step {
+                padding-left: 3rem;
+            }
+
+            .step::before {
+                width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+            }
+
+            .carousel-slide {
+                padding: 1.5rem;
+            }
+            .carousel-slide h4 {
+                font-size: 1.3rem;
+            }
+            .carousel-slide p {
+                font-size: 1rem;
+            }
+            .carousel-button {
+                padding: 0.6rem 1rem;
+                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+            }
+            .carousel-button-prev {
+                left: 10px;
+            }
+            .carousel-button-next {
+                right: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🖊️ Caneta 3D Sustentável</div>
+            <ul class="nav-links">
+                <li><a href="#intro">Início</a></li>
+                <li><a href="#components">Componentes</a></li>
+                <li><a href="#assembly">Montagem</a></li>
+                <li><a href="#safety">Segurança</a></li>
+                <li><a href="#benefits">Benefícios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="intro">
+            <div class="container">
+                <h1>Transforme Lixo Eletrônico em Tecnologia Criativa</h1>
+                <p>Aprenda a construir uma caneta 3D funcional usando componentes de cigarros eletrônicos descartados</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">CEs apreendidos em 2024</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">R$ 32-85</div>
+                        <div class="stat-label">Custo total estimado</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Economia vs. comercial</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="components">
+            <div class="container">
+                <h2>Componentes Necessários</h2>
+                
+                <div id="threejs-container">
+                    <div class="controls">
+                        <button onclick="showComponent('battery')">Bateria</button>
+                        <button onclick="showComponent('resistor')">Resistência</button>
+                        <button onclick="showComponent('nozzle')">Bico</button>
+                        <button onclick="showComponent('transistor')">Transistor</button>
+                        <button onclick="showComponent('complete')">Completo</button>
+                    </div>
+                </div>
+
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-title">🔋 Componentes Reutilizados</div>
+                        <ul>
+                            <li><strong>Bateria de Lítio:</strong> Fonte de energia principal</li>
+                            <li><strong>Fiação Interna:</strong> Para conexões elétricas</li>
+                            <li><strong>Carcaça:</strong> Adaptável para o corpo da caneta</li>
+                            <li><strong>Resistência Aquecedora:</strong> Base do sistema de aquecimento</li>
+                        </ul>
+                        <span class="component-price">R$ 0,00 (Reaproveitado)</span>
+                    </div>
+
+                    <div class="component-card">
+                        <div class="component-title">🛠️ Componentes a Adquirir</div>
+                        <ul>
+                            <li><strong>Bico Metálico 3D:</strong> R$ 15-40</li>
+                            <li><strong>Transistor (MOSFET):</strong> R$ 3-15</li>
+                            <li><strong>Interruptor:</strong> R$ 2-5</li>
+                            <li><strong>Filamento PLA/ABS:</strong> R$ 10-25</li>
+                            <li><strong>Conector TP4056 (Opcional):</strong> R$ 5-10</li>
+                        </ul>
+                        <span class="component-price">R$ 35-95 Total</span>
+                    </div>
+
+                    <div class="component-card">
+                        <div class="component-title">♻️ Filamento Sustentável</div>
+                        <ul>
+                            <li><strong>Garrafa PET:</strong> Cortada em tiras finas</li>
+                            <li><strong>Processo:</strong> Aquecer e formar filamento</li>
+                            <li><strong>Diâmetro:</strong> 1.75mm (padrão)</li>
+                            <li><strong>Vantagem:</strong> Custo quase zero</li>
+                        </ul>
+                        <span class="component-price">R$ 0,00 (Reciclado)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="safety">
+            <div class="container">
+                <h2>⚠️ Segurança em Primeiro Lugar</h2>
+                
+                <div class="safety-warning">
+                    <h3>🚨 ATENÇÃO: Manuseio de Baterias de Lítio</h3>
+                    <ul>
+                        <li><strong>NUNCA perfure ou desmonte completamente a bateria</strong></li>
+                        <li><strong>Use óculos de proteção</strong> durante toda a montagem</li>
+                        <li><strong>Trabalhe em área ventilada</strong> longe de materiais inflamáveis</li>
+                        <li><strong>Tenha um extintor de incêndio próximo</strong></li>
+                        <li><strong>Se a bateria esquentar excessivamente, pare imediatamente</strong></li>
+                        <li><strong>Descarte adequadamente baterias danificadas</strong></li>
+                    </ul>
+                </div>
+
+                <div class="safety-warning">
+                    <h3>🔥 Cuidados com Aquecimento</h3>
+                    <ul>
+                        <li><strong>O bico metálico ficará MUITO quente</strong> durante uso</li>
+                        <li><strong>Nunca toque o bico durante ou logo após o uso</strong></li>
+                        <li><strong>Use suporte adequado</strong> para apoiar a caneta</li>
+                        <li><strong>Mantenha longe de crianças</strong> durante operação</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="assembly">
+            <div class="container">
+                <h2>🔧 Guia de Montagem Passo a Passo</h2>
+                
+                <h3 class="carousel-title">Como Funciona a Caneta 3D?</h3>
+                <div class="carousel-container">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide active">
+                            <div class="slide-icon">🔋</div>
+                            <h4>1. Energia da Bateria</h4>
+                            <p>A bateria de lítio, reutilizada do cigarro eletrônico, fornece a energia elétrica necessária para todo o sistema.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-icon">🔥</div>
+                            <h4>2. Aquecimento da Resistência</h4>
+                            <p>A energia da bateria alimenta a resistência (também do CE), que se aquece rapidamente devido à passagem da corrente elétrica.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-icon">🌡️</div>
+                            <h4>3. Bico Aquecido</h4>
+                            <p>A resistência transfere seu calor para o bico metálico da caneta 3D, elevando sua temperatura a um nível suficiente para derreter plástico.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-icon">💡</div>
+                            <h4>4. Controle com Transistor</h4>
+                            <p>Um transistor (MOSFET) controla a quantidade de energia que chega à resistência. Isso permite regular a temperatura do bico, evitando superaquecimento e garantindo a fusão ideal do filamento.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-icon">♻️</div>
+                            <h4>5. Derretimento do Filamento PET</h4>
+                            <p>O bico quente derrete o filamento plástico (como tiras de garrafas PET recicladas) que é inserido na caneta.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-icon">✨</div>
+                            <h4>6. Criação de Objetos</h4>
+                            <p>O plástico derretido é extrudado pela ponta do bico. Ao sair, ele resfria e solidifica, permitindo desenhar e construir objetos tridimensionais camada por camada.</p>
+                        </div>
+                    </div>
+                    <button class="carousel-button carousel-button-prev" onclick="prevSlide()">&#10094;</button>
+                    <button class="carousel-button carousel-button-next" onclick="nextSlide()">&#10095;</button>
+                    <div class="carousel-indicators">
+                        </div>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <h4>Preparação do Cigarro Eletrônico</h4>
+                        <p><strong>Com muito cuidado</strong>, desmonte o CE para acessar os componentes internos. Remova o líquido restante e limpe todas as peças. <strong>Mantenha a bateria intacta!</strong></p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Isolamento da Bateria</h4>
+                        <p>Proteja a bateria com fita isolante nas extremidades. Se possível, adicione um módulo de carregamento TP4056 para facilitar a recarga segura.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Montagem do Circuito de Aquecimento</h4>
+                        <p>Conecte: Bateria (+) → Interruptor → Transistor (Gate) → Resistência → Bico Metálico. O transistor controlará a temperatura do aquecimento.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Instalação do Bico 3D</h4>
+                        <p>Fixe o bico metálico na extremidade da caneta, garantindo boa conexão térmica com a resistência aquecedora do CE.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Montagem da Carcaça</h4>
+                        <p>Acomode todos os componentes na carcaça, deixando espaço para ventilação e acesso ao interruptor. Use cola quente ou parafusos pequenos.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Teste de Segurança</h4>
+                        <p>Antes do primeiro uso, teste o aquecimento por poucos segundos. Verifique se não há superaquecimento da bateria ou conexões soltas.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Preparação do Filamento PET</h4>
+                        <p>Corte garrafas PET limpas em tiras de ~3mm de largura. Aqueça levemente e estique para formar filamento de ~1.75mm de diâmetro.</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>Primeiro Uso</h4>
+                        <p>Insira o filamento, ligue a caneta e aguarde o aquecimento (30-60s). Pressione suavemente o filamento para iniciar a extrusão. <strong>Cuidado com o bico quente!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="benefits">
+            <div class="container">
+                <h2>🌟 Benefícios do Projeto</h2>
+                
+                <div class="benefits">
+                    <div class="benefit">
+                        <div class="benefit-icon">♻️</div>
+                        <h3>Sustentabilidade</h3>
+                        <p>Reduz o lixo eletrônico reutilizando componentes de CEs descartados, transformando problema ambiental em solução criativa.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">💰</div>
+                        <h3>Economia</h3>
+                        <p>Custo 70-80% menor que canetas 3D comerciais, democratizando o acesso à tecnologia de impressão 3D manual.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">🎓</div>
+                        <h3>Educação</h3>
+                        <p>Ferramenta ideal para ensinar eletrônica, sustentabilidade e design 3D de forma prática e envolvente.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">🚀</div>
+                        <h3>Inovação</h3>
+                        <p>Abordagem criativa de upcycling que transforma resíduos em produtos de maior valor agregado e utilidade.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">🤝</div>
+                        <h3>Impacto Social</h3>
+                        <p>Promove inclusão digital e pode gerar renda através de oficinas e venda das canetas montadas.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">🎨</div>
+                        <h3>Criatividade</h3>
+                        <p>Permite materializar ideias 3D de forma acessível, estimulando a criatividade e o aprendizado STEAM.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>📋 Considerações Finais</h2>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                    Esta caneta 3D é uma ferramenta educativa e criativa, ideal para aprendizado e projetos artísticos. 
+                    Embora não tenha a precisão de equipamentos profissionais, oferece uma excelente introdução à tecnologia 
+                    3D de forma sustentável e acessível.
+                </p>
+                
+                <div class="final-considerations">
+                    <h3>⚡ Lembre-se sempre:</h3>
+                    <ul>
+                        <li>✅ Segurança em primeiro lugar</li>
+                        <li>✅ Supervisão adulta para menores</li>
+                        <li>✅ Descarte responsável de materiais</li>
+                        <li>✅ Compartilhe conhecimento sustentável</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Caneta 3D Sustentável - Transformando resíduos em tecnologia criativa</p>
+            <p>Projeto educativo para conscientização ambiental e inclusão digital</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Variáveis globais para a cena Three.js
+        let scene, camera, renderer, currentObjects = [];
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        const rotationSpeed = 0.01; // Velocidade de rotação da câmera
+
+        /**
+         * Inicializa a cena Three.js, câmera, renderizador e iluminação.
+         * Adiciona um plano de base e inicializa com a caneta completa.
+         */
+        function initThreeJS() {
+            const container = document.getElementById('threejs-container');
+            
+            // Cena
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0); // Cor de fundo da cena
+            
+            // Câmera
+            camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+            camera.position.set(5, 5, 5); // Posição inicial da câmera
+            camera.lookAt(0, 0, 0); // Aponta a câmera para o centro da cena
+            
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true }); // Habilita o antialiasing para gráficos mais suaves
+            renderer.setSize(container.offsetWidth, container.offsetHeight); // Define o tamanho do renderizador para o tamanho do container
+            renderer.shadowMap.enabled = true; // Habilita sombras
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Tipo de mapa de sombra para sombras mais suaves
+            container.appendChild(renderer.domElement); // Adiciona o canvas do renderizador ao container HTML
+            
+            // Iluminação
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6); // Luz ambiente suave
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); // Luz direcional
+            directionalLight.position.set(10, 10, 5); // Posição da luz direcional
+            directionalLight.castShadow = true; // Permite que esta luz crie sombras
+            // Configurações da sombra para melhor qualidade
+            directionalLight.shadow.mapSize.width = 1024;
+            directionalLight.shadow.mapSize.height = 1024;
+            directionalLight.shadow.camera.near = 0.5;
+            directionalLight.shadow.camera.far = 50;
+            directionalLight.shadow.camera.left = -10;
+            directionalLight.shadow.camera.right = 10;
+            directionalLight.shadow.camera.top = 10;
+            directionalLight.shadow.camera.bottom = -10;
+            scene.add(directionalLight);
+            
+            // Plano de base (chão)
+            const planeGeometry = new THREE.PlaneGeometry(20, 20);
+            const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xcccccc });
+            const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            plane.rotation.x = -Math.PI / 2; // Rotaciona para ficar horizontal
+            plane.position.y = -2; // Posição abaixo dos objetos
+            plane.receiveShadow = true; // Permite que o plano receba sombras
+            scene.add(plane);
+            
+            // Adiciona listeners para interação do mouse
+            container.addEventListener('mousedown', onMouseDown);
+            container.addEventListener('mouseup', onMouseUp);
+            container.addEventListener('mousemove', onMouseMove);
+            // Adiciona listeners para toque (mobile)
+            container.addEventListener('touchstart', onTouchStart, { passive: false });
+            container.addEventListener('touchend', onTouchEnd);
+            container.addEventListener('touchmove', onTouchMove, { passive: false });
+
+
+            // Adiciona listener para redimensionamento da janela
+            window.addEventListener('resize', onWindowResize);
+
+            // Inicializa com a visualização completa da caneta
+            showComponent('complete');
+            
+            // Inicia o loop de animação
+            animate();
+        }
+        
+        /**
+         * Cria um modelo 3D de uma bateria.
+         * O modelo é centralizado em (0,0,0) dentro do seu próprio grupo e deitado.
+         * @returns {THREE.Group} Um grupo contendo o modelo da bateria.
+         */
+        function createBattery() {
+            const group = new THREE.Group();
+            
+            // Corpo da bateria (cilindro azul)
+            const bodyGeometry = new THREE.CylinderGeometry(0.4, 0.4, 2, 32); 
+            const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0x2196F3 }); 
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.castShadow = true;
+            // Não rotacionamos o corpo aqui, rotacionamos o grupo inteiro
+            group.add(body);
+            
+            // Terminais (cilindros cinzas)
+            const terminalGeometry = new THREE.CylinderGeometry(0.15, 0.15, 0.2, 16); 
+            const terminalMaterial = new THREE.MeshLambertMaterial({ color: 0x757575 }); 
+            
+            const topTerminal = new THREE.Mesh(terminalGeometry, terminalMaterial);
+            topTerminal.position.y = 1.1; 
+            group.add(topTerminal);
+            
+            const bottomTerminal = new THREE.Mesh(terminalGeometry, terminalMaterial);
+            bottomTerminal.position.y = -1.1; 
+            group.add(bottomTerminal);
+            
+            group.rotation.z = Math.PI / 2; // Deita a bateria
+            return group;
+        }
+        
+        /**
+         * Cria um modelo 3D de um resistor.
+         * O modelo é centralizado em (0,0,0) dentro do seu próprio grupo.
+         * @returns {THREE.Group} Um grupo contendo o modelo do resistor.
+         */
+        function createResistor() {
+            const group = new THREE.Group();
+            
+            // Corpo do resistor (cilindro amarelo)
+            const bodyGeometry = new THREE.CylinderGeometry(0.15, 0.15, 1, 16); 
+            const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0xFFC107 }); 
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.rotation.z = Math.PI / 2; // Rotaciona para ficar horizontal
+            body.castShadow = true;
+            group.add(body);
+            
+            // Fios (cilindros cinza escuro)
+            const wireGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.8, 8); 
+            const wireMaterial = new THREE.MeshLambertMaterial({ color: 0x424242 }); 
+            
+            const leftWire = new THREE.Mesh(wireGeometry, wireMaterial);
+            leftWire.rotation.z = Math.PI / 2;
+            leftWire.position.x = -0.9; 
+            group.add(leftWire);
+            
+            const rightWire = new THREE.Mesh(wireGeometry, wireMaterial);
+            rightWire.rotation.z = Math.PI / 2;
+            rightWire.position.x = 0.9; 
+            group.add(rightWire);
+            
+            return group;
+        }
+        
+        /**
+         * Cria um modelo 3D de um bico de caneta 3D.
+         * O modelo é centralizado em (0,0,0) dentro do seu próprio grupo e deitado.
+         * @returns {THREE.Group} Um grupo contendo o modelo do bico.
+         */
+        function createNozzle() {
+            const group = new THREE.Group();
+            
+            // Bico principal (cone cinza)
+            const nozzleHeight = 1.5;
+            const nozzleGeometry = new THREE.ConeGeometry(0.3, nozzleHeight, 32); 
+            const nozzleMaterial = new THREE.MeshLambertMaterial({ color: 0x607D8B }); 
+            const nozzle = new THREE.Mesh(nozzleGeometry, nozzleMaterial);
+            nozzle.position.y = (nozzleHeight / 2) - 0.3;  // Ajuste para centralizar o cone original
+            nozzle.castShadow = true;
+            group.add(nozzle);
+            
+            // Ponta do bico (cone cinza mais escuro)
+            const tipHeight = 0.3;
+            const tipGeometry = new THREE.ConeGeometry(0.05, tipHeight, 16); 
+            const tipMaterial = new THREE.MeshLambertMaterial({ color: 0x37474F }); 
+            const tip = new THREE.Mesh(tipGeometry, tipMaterial);
+            tip.position.y = -0.9 - 0.3; // Ajuste para posicionar a ponta original
+            group.add(tip);
+
+            group.rotation.z = Math.PI / 2; // Deita o bico
+            // Após a rotação, o que era Y agora é X.
+            // Para centralizar o bico deitado, precisamos ajustar a posição X do grupo ou dos elementos internos.
+            // Como os elementos já estão posicionados em relação ao Y (que se torna X),
+            // o grupo já estará "horizontalmente" centrado se a câmera olhar para (0,0,0).
+            // Se quisermos que o *centro geométrico do bico deitado* esteja em (0,0,0) na cena,
+            // precisaríamos calcular o novo centro e transladar o grupo.
+            // Por simplicidade, manteremos a rotação no grupo e a câmera olhando para (0,0,0).
+            // O deslocamento visual pode ser compensado pela posição da câmera se necessário.
+            
+            return group;
+        }
+        
+        /**
+         * Cria um modelo 3D de um transistor.
+         * O modelo é centralizado em (0,0,0) dentro do seu próprio grupo.
+         * @returns {THREE.Group} Um grupo contendo o modelo do transistor.
+         */
+        function createTransistor() {
+            const group = new THREE.Group();
+            
+            // Corpo do transistor (caixa cinza escuro)
+            const bodyHeight = 0.6;
+            const bodyGeometry = new THREE.BoxGeometry(0.8, bodyHeight, 0.2);
+            const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0x424242 }); 
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.castShadow = true;
+            group.add(body);
+            
+            // Pinos (cilindros cinzas)
+            const pinLength = 0.4;
+            const pinGeometry = new THREE.CylinderGeometry(0.02, 0.02, pinLength, 8); 
+            const pinMaterial = new THREE.MeshLambertMaterial({ color: 0x757575 }); 
+            
+            body.position.y = 0.3; 
+
+            for (let i = 0; i < 3; i++) {
+                const pin = new THREE.Mesh(pinGeometry, pinMaterial);
+                pin.position.set(-0.25 + i * 0.25, -0.5 + 0.3, 0); 
+                group.add(pin);
+            }
+            
+            return group;
+        }
+        
+        /**
+         * Cria um modelo 3D da caneta 3D completa.
+         * @returns {THREE.Group} Um grupo contendo o modelo da caneta completa.
+         */
+        function createCompletePen() {
+            const group = new THREE.Group();
+            
+            // Corpo da caneta (cilindro roxo, representando a carcaça do CE)
+            const bodyGeometry = new THREE.CylinderGeometry(0.3, 0.3, 4, 32); 
+            const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0x9C27B0 }); 
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.rotation.z = Math.PI / 2; // Rotaciona para ficar horizontal
+            body.castShadow = true;
+            group.add(body);
+            
+            // Bico na ponta (cone cinza azulado)
+            const nozzleGeometry = new THREE.ConeGeometry(0.15, 0.8, 16); 
+            const nozzleMaterial = new THREE.MeshLambertMaterial({ color: 0x607D8B }); 
+            const nozzle = new THREE.Mesh(nozzleGeometry, nozzleMaterial);
+            nozzle.rotation.z = -Math.PI / 2;
+            nozzle.position.x = 2.4; 
+            group.add(nozzle);
+            
+            // Botão (cilindro vermelho)
+            const buttonGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.1, 16); 
+            const buttonMaterial = new THREE.MeshLambertMaterial({ color: 0xF44336 }); 
+            const button = new THREE.Mesh(buttonGeometry, buttonMaterial);
+            button.position.set(0, 0.4, 0); 
+            group.add(button);
+            
+            // Filamento saindo (cilindro verde)
+            const filamentGeometry = new THREE.CylinderGeometry(0.02, 0.02, 1, 8); 
+            const filamentMaterial = new THREE.MeshLambertMaterial({ color: 0x4CAF50 }); 
+            const filament = new THREE.Mesh(filamentGeometry, filamentMaterial);
+            filament.rotation.z = -Math.PI / 2;
+            filament.position.x = 2.8; 
+            group.add(filament);
+
+            return group;
+        }
+
+        /**
+         * Remove todos os objetos 3D atualmente na cena e adiciona o componente especificado.
+         * @param {string} componentName O nome do componente a ser exibido ('battery', 'resistor', 'nozzle', 'transistor', 'complete').
+         */
+        function showComponent(componentName) {
+            currentObjects.forEach(obj => scene.remove(obj));
+            currentObjects = [];
+
+            let newObject;
+            switch (componentName) {
+                case 'battery':
+                    newObject = createBattery();
+                    camera.position.set(0, 0, 4); // Ajuste de câmera para bateria deitada
+                    break;
+                case 'resistor':
+                    newObject = createResistor();
+                    camera.position.set(0, 0, 2); 
+                    break;
+                case 'nozzle':
+                    newObject = createNozzle();
+                    camera.position.set(0, 0, 3); // Mantido, pode precisar de ajuste fino
+                    break;
+                case 'transistor':
+                    newObject = createTransistor();
+                    camera.position.set(0, 0, 2); 
+                    break;
+                case 'complete':
+                default:
+                    newObject = createCompletePen();
+                    camera.position.set(0, 0, 5); 
+                    break;
+            }
+            
+            scene.add(newObject);
+            currentObjects.push(newObject);
+            camera.lookAt(0, 0, 0); 
+        }
+
+        /**
+         * Loop de animação que renderiza a cena.
+         */
+        function animate() {
+            requestAnimationFrame(animate); 
+            renderer.render(scene, camera); 
+        }
+
+        /**
+         * Lida com o evento de pressionar o botão do mouse para iniciar o arrasto.
+         * @param {MouseEvent} event O objeto do evento do mouse.
+         */
+        function onMouseDown(event) {
+            isDragging = true;
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+
+        /**
+         * Lida com o evento de soltar o botão do mouse para parar o arrasto.
+         */
+        function onMouseUp() {
+            isDragging = false;
+        }
+
+        /**
+         * Lida com o evento de mover o mouse para rotacionar a câmera.
+         * @param {MouseEvent} event O objeto do evento do mouse.
+         */
+        function onMouseMove(event) {
+            if (!isDragging) return;
+
+            const deltaX = event.clientX - previousMousePosition.x;
+            const deltaY = event.clientY - previousMousePosition.y;
+
+            camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), -deltaX * rotationSpeed);
+            const yAxis = new THREE.Vector3(0, 1, 0);
+            const cameraXAxis = new THREE.Vector3().crossVectors(camera.up, camera.getWorldDirection(new THREE.Vector3()).negate()).normalize();
+            
+            // Evita que a câmera vire de cabeça para baixo
+            const currentAngleWithY = camera.position.angleTo(yAxis);
+            const proposedAngleChange = -deltaY * rotationSpeed;
+            
+            // Calcula o eixo de rotação perpendicular à direção da câmera e ao eixo Y global
+            // Isso garante que a rotação vertical seja sempre em torno de um eixo horizontal relativo à visão da câmera.
+            let rotationAxis = new THREE.Vector3().crossVectors(camera.position, yAxis).normalize();
+            if (rotationAxis.lengthSq() === 0) { // Caso a câmera esteja alinhada com o eixo Y
+                rotationAxis = new THREE.Vector3(1,0,0); // Usa o eixo X global como fallback
+            }
+
+
+            // Limita a rotação para evitar que a câmera passe dos polos
+            if (deltaY > 0 && currentAngleWithY - proposedAngleChange < Math.PI - 0.05) { // Movendo para baixo
+                 camera.position.applyAxisAngle(cameraXAxis, proposedAngleChange);
+            } else if (deltaY < 0 && currentAngleWithY - proposedAngleChange > 0.05) { // Movendo para cima
+                 camera.position.applyAxisAngle(cameraXAxis, proposedAngleChange);
+            }
+
+
+            camera.lookAt(0, 0, 0); 
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+        
+        // Funções de toque para mobile
+        function onTouchStart(event) {
+            if (event.touches.length === 1) {
+                event.preventDefault(); 
+                isDragging = true;
+                previousMousePosition = {
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY
+                };
+            }
+        }
+
+        function onTouchEnd() {
+            isDragging = false;
+        }
+
+        function onTouchMove(event) {
+            if (!isDragging || event.touches.length !== 1) return;
+            event.preventDefault(); 
+
+            const deltaX = event.touches[0].clientX - previousMousePosition.x;
+            const deltaY = event.touches[0].clientY - previousMousePosition.y;
+
+            camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), -deltaX * rotationSpeed);
+            
+            const yAxis = new THREE.Vector3(0, 1, 0);
+            const cameraXAxis = new THREE.Vector3().crossVectors(camera.up, camera.getWorldDirection(new THREE.Vector3()).negate()).normalize();
+            const currentAngleWithY = camera.position.angleTo(yAxis);
+            const proposedAngleChange = -deltaY * rotationSpeed;
+
+            if (deltaY > 0 && currentAngleWithY - proposedAngleChange < Math.PI - 0.05) {
+                 camera.position.applyAxisAngle(cameraXAxis, proposedAngleChange);
+            } else if (deltaY < 0 && currentAngleWithY - proposedAngleChange > 0.05) {
+                 camera.position.applyAxisAngle(cameraXAxis, proposedAngleChange);
+            }
+            camera.lookAt(0, 0, 0);
+            previousMousePosition = {
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY
+            };
+        }
+
+
+        /**
+         * Lida com o evento de redimensionamento da janela para ajustar a câmera e o renderizador.
+         */
+        function onWindowResize() {
+            const container = document.getElementById('threejs-container');
+            if (container && renderer) { 
+                camera.aspect = container.offsetWidth / container.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+            }
+        }
+
+        // --- Script do Carrossel ---
+        const slidesContainer = document.querySelector(".carousel-slides");
+        const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+        const indicatorsContainer = document.querySelector(".carousel-indicators");
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        if (indicatorsContainer) {
+            slides.forEach((_, index) => {
+                const dot = document.createElement("span");
+                dot.classList.add("indicator-dot");
+                if (index === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => goToSlide(index));
+                indicatorsContainer.appendChild(dot);
+            });
+        }
+        const indicatorDots = indicatorsContainer ? Array.from(indicatorsContainer.children) : [];
+
+
+        function updateCarousel() {
+            if (slidesContainer) {
+                 slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+           
+            if (indicatorDots.length > 0) {
+                indicatorDots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentSlide);
+                });
+            }
+            slides.forEach((slide, index) => {
+                slide.classList.toggle("active", index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        window.onload = function () {
+            if (document.getElementById('threejs-container')) {
+                initThreeJS();
+            }
+            if (slides.length > 0) {
+                 updateCarousel(); 
+            }
+        };
+    </script>
+</body>
+</html>
